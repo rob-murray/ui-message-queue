@@ -8,8 +8,9 @@ ui-message-queue is a Javascript implementation of a message queue allowing you 
 
 This repository contains the following sections:
 
-1. src - this contains the source Javascript.
-2. demo - this contains a simple demo to show the functionality
+1. src - this contains the source Coffeescript.
+2. ui-message-queue.js - this is the Javascript implementation (copy this to use!)
+3. demo - this contains a simple demo to show the functionality
 
 ## Getting started
 
@@ -18,12 +19,12 @@ How to use:
 1. Copy Javascript source to project
 2. Import source file
 
-<script type="text/javascript" src="ui-msg-queue.js"></script>
+	<script type="text/javascript" src="ui-msg-queue.js"></script>
 
 3. options... TBC
 4. Create instance of object
 
-var myMq = new uiMessageQueue(msgq-options);
+	var myMq = new uiMessageQueue(msgq-options);
 
 More To follow
 
