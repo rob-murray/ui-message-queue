@@ -49,6 +49,8 @@ If no options passed then throws "Missing arguments" Error.
 
 These will be displayed in a FIFO method.
 
+Please see the demo for full example.
+
 ## Contributions
 
 Please use the GitHub pull-request mechanism to submit contributions.
