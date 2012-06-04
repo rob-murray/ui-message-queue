@@ -17,6 +17,7 @@ This repository contains the following sections:
 How to use:
 
 1) Copy Javascript source to project
+
 2) Import source file
 
 
