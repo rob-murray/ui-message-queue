@@ -19,7 +19,9 @@ How to use:
 1. Copy Javascript source to project
 2. Import source file
 
+```
 	<script type="text/javascript" src="ui-message-queue.js"></script>
+```
 
 3. Options:
 Takes options in the form of an object literal:
