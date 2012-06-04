@@ -16,14 +16,19 @@ This repository contains the following sections:
 
 How to use:
 
-1. Copy Javascript source to project
-2. Import source file
+1) Copy Javascript source to project
+2) Import source file
+
 
 ```
 	<script type="text/javascript" src="ui-message-queue.js"></script>
 ```
 
-3. Options:
+
+
+3) Options
+
+
 Takes options in the form of an object literal:
 
 ```
@@ -41,13 +46,17 @@ These are as follows:
 
 If no options passed then throws "Missing arguments" Error.
 
-4. Create instance of object
+
+4) Create instance of object
+
 
 ```
     var myMq = new uiMessageQueue(options);
 ```
 
-5. Add messages to the queue
+
+5) Add messages to the queue
+
 
 ```
     myMq.push("Here is a message");
