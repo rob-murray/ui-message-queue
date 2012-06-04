@@ -16,7 +16,7 @@ class window.UiMessageQueue
   messagesCount : 0
   useMessageBox : true
   
-  #def vars
+  #default vars
   timeOut : 1000 #timeout value to display message
   emptyDisplayString : "..." #default string to display when no messages in queue
 
