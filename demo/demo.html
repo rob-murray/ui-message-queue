@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UI-Message-Queue Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <style>
+                
+#msg-output{
+    width: 300px;
+    height: 30px;
+    border: 1px solid black;
+    margin: 15px;
+    padding: 10px;
+}                
+                
+        </style>        
+    </head>
+    
+    <body>
+        <header id="banner">
+
+
+            <h2>UI-Message-Queue Demo</h2>
+            
+            <p>This page is a demo of the UI Message Queue - a Javascript implementation of a 
+                message queue allowing you to push messages (String) to the queue and 
+                display in via a FIFO (First In First Out) method.
+                @See <a href="https://github.com/rob-murray/ui-message-queue">https://github.com/rob-murray/ui-message-queue</a>.</p>
+        
+        </header>
+
+
+        <section id="content">
+            <button id="init">Click to run!</button>
+            <div id="msg-output">
+                
+            </div>
+        </section>
+        
+    </body>
+    
+    <!-- Import Javascript libs -->
+    <script type="text/javascript" src="ui-message-queue.js"></script>
+    
+    
+    <script type="text/javascript">
+var options, myQ;
+
+// Set up options
+options = {
+  message_box_div_id: "msg-output",
+  timeout_val: 1500,
+  empty_display_str: "empty..."
+};
+
+// Create UIMessageQueue with options
+myQ = new UiMessageQueue(options);
+
+// Method called when user clicks button
+function run(){
+    
+    var TEN_SECS = 10000;
+    
+    myQ.push("message 1");
+    myQ.push("message 2");
+    myQ.push("message 3");
+    myQ.push("message 4");
+    myQ.push("message 5");
+
+
+    setTimeout(function(){
+        myQ.push("Delayed message!!");
+    }, TEN_SECS);
+}
+
+//assign onclick event to button
+document.getElementById("init").onclick = run;
+        
+    </script>    
+    
+</html>
+
