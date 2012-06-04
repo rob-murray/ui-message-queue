@@ -16,9 +16,9 @@ class window.UiMessageQueue
   messagesCount : 0
   useMessageBox : true
   
-  #default vars
-  timeOut : 1000 #timeout value to display message
-  emptyDisplayString : "..." #default string to display when no messages in queue
+  #default atrributes
+  timeOut : 1000 # timeout value to display message
+  emptyDisplayString : "..." # default string to display when no messages in queue
 
   # constructor taking arguments
   constructor: (args) ->
@@ -26,28 +26,36 @@ class window.UiMessageQueue
     @clear()
     
     if args
+    
       @setAttributes args
       #show initial message
       @dispMsg @emptyDisplayString
+      
     else
+      
       throw "Missing arguments. UiMessageQueue requires arguments to run."
     
   # method to set attributes from args passed  
   setAttributes: (attrs)->
   
-      # Optional div id
+      # Set optional div id
       if attrs.message_box_div_id
+      
         messageBoxId = attrs.message_box_div_id        
       
-      # Assign optional values
+      # Test and assign timeout
       if attrs.timeout_val
         #test if timeout_val is numeric
         if isFinite attrs.timeout_val
+        
           @timeOut = attrs.timeout_val
+          
         else
+          
           throw "Invalid argument: timeout_val is not numeric"
           
       if attrs.empty_display_str
+      
         @emptyDisplayString = attrs.empty_display_str
         
       # Try and find the El by ID
@@ -57,6 +65,7 @@ class window.UiMessageQueue
           #Found ok so set to var instead of searching each time
           @useMessageBox = true
           @messageBoxDivEl = document.getElementById(messageBoxId)
+          
         else
           # Unable to find El so fall back to alert message
           @useMessageBox = false
@@ -67,10 +76,12 @@ class window.UiMessageQueue
       
       return
   
-  # cleardown obj, reset count and queue  
+  # cleardown, reset count and queue  
   clear: =>
+    
     @messagesCount = 0
     @messagesArr = []
+  
   
   # Add a message to the queue  
   push: ( message ) =>
@@ -80,7 +91,9 @@ class window.UiMessageQueue
 
       # if the queue has messages then just add to the end
       if @messagesArr.length > 0
+      
         @messagesArr.push message
+        
       else
         #else add and call display timer
         @messagesArr.push message
@@ -93,9 +106,11 @@ class window.UiMessageQueue
   
   # Method to display message
   dispMsg: (val) =>
+    
     if @useMessageBox == true
       @messageBoxDivEl.innerHTML = val
-      
+ 
+ 
   # Timeout method to work through queue
   updateMsgBox: =>
     self = @
@@ -112,7 +127,7 @@ class window.UiMessageQueue
       self.dispMsg self.messagesArr[self.messagesCount]
       self.messagesCount++
       
-      # pass obj ref to timeout func and call with timeOut value
+      # pass obj ref to timeout call and call with timeOut value
       setTimeout ((self) ->
         self.updateMsgBox()
       ), self.timeOut, this
