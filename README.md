@@ -48,7 +48,7 @@ These are as follows:
 If no options passed then throws "Missing arguments" Error.
 
 
-4) Create instance of object
+4) Create instance of object passing options
 
 
 ```
