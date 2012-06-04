@@ -24,28 +24,28 @@ How to use:
 3. Options:
 Takes options in the form of an object literal:
 
-	options = {
-	  message_box_div_id: "output-id",
-	  timeout_val: TIME_IN_MSECS,
-	  empty_display_str: "STRING"
-	};
+    options = {
+        message_box_div_id: "output-id",
+        timeout_val: TIME_IN_MSECS,
+        empty_display_str: "STRING"
+    };
 
 These are as follows:
-message_box_div_id [OPTIONAL] - The ID of the element in the DOM to add messages to. If this is not found then ui-message-queue falls back to using the alert popup box
-timeout_val [OPTIONAL] - Time in milisecs to display each message for. Throws "Invalid argument" Error if not numeric. Default val is 1000
-empty_display_str [OPTIONAL] - This is message displayed when no messages are in the queue. Default val is "..."
+* message_box_div_id [OPTIONAL] - The ID of the element in the DOM to add messages to. If this is not found then ui-message-queue falls back to using the alert popup box
+* timeout_val [OPTIONAL] - Time in milisecs to display each message for. Throws "Invalid argument" Error if not numeric. Default val is 1000
+* empty_display_str [OPTIONAL] - This is message displayed when no messages are in the queue. Default val is "..."
 
 If no options passed then throws "Missing arguments" Error.
 
 4. Create instance of object
 
-	var myMq = new uiMessageQueue(options);
+    var myMq = new uiMessageQueue(options);
 
 5. Add messages to the queue
 
-	myMq.push("Here is a message");
-	myMq.push("Here is another one");
-	myMq.push("Finally, one more message");
+    myMq.push("Here is a message");
+    myMq.push("Here is another one");
+    myMq.push("Finally, one more message");
 
 These will be displayed in a FIFO method.
 
