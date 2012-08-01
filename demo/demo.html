@@ -45,13 +45,14 @@
     
     
     <script type="text/javascript">
+
 var options, myQ;
 
 // Set up options
 options = {
   message_box_div_id: "msg-output",
   timeout_val: 1500,
-  empty_display_str: "empty..."
+  empty_display_str: "Queue empty..."
 };
 
 // Create UIMessageQueue with options
@@ -60,7 +61,7 @@ myQ = new UiMessageQueue(options);
 // Method called when user clicks button
 function run(){
     
-    var TEN_SECS = 10000;
+    var DELAY_TIME = 10000;//Ten seconds
     
     myQ.push("message 1");
     myQ.push("message 2");
@@ -70,8 +71,8 @@ function run(){
 
 
     setTimeout(function(){
-        myQ.push("Delayed message!!");
-    }, TEN_SECS);
+        myQ.push("This is a delayed message!!");
+    }, DELAY_TIME);
 }
 
 //assign onclick event to button
