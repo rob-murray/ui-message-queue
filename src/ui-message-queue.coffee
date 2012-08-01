@@ -1,18 +1,20 @@
 ###
 ui-message-queue - a User Message Queue Javascript implementation
 (c) 2012 Robert Murray
+@see https://github.com/rob-murray/ui-message-queue
 UiMessageQueue may be freely distributed under the MIT license
 ###
 
 
 
 # Create class in window namespace
-# TODO: best practice here??
 class window.UiMessageQueue
+
+  "use strict"
 
   #vars
   messageBoxDivEl : null
-  messagesArr : new Array()
+  messagesArr : []
   messagesCount : 0
   useMessageBox : true
   
@@ -45,6 +47,7 @@ class window.UiMessageQueue
       
       # Test and assign timeout
       if attrs.timeout_val
+      
         #test if timeout_val is numeric
         if isFinite attrs.timeout_val
         
@@ -131,7 +134,6 @@ class window.UiMessageQueue
       setTimeout ((self) ->
         self.updateMsgBox()
       ), self.timeOut, this
-
 
 
 # End
