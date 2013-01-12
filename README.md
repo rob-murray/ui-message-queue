@@ -72,7 +72,8 @@ Please see the demo for full example.
 ## Contributions
 
 Please use the GitHub pull-request mechanism to submit contributions.
-Please end the coffeescript source and then compile to js - Do not edit ui-message-queue.js!!
+
+Please edit the coffeescript source and then compile to js - Do not edit ui-message-queue.js!!
 
 Simply compile with "coffee -c ui-message-queue.coffee"
 
