@@ -1,6 +1,6 @@
 ###
 ui-message-queue - a User Message Queue Javascript implementation
-(c) 2012 Robert Murray
+(c) 2013 Robert Murray
 @see https://github.com/rob-murray/ui-message-queue
 UiMessageQueue may be freely distributed under the MIT license
 ###
@@ -61,7 +61,7 @@ class window.UiMessageQueue
       
         @emptyDisplayString = attrs.empty_display_str
         
-      # Try and find the El by ID
+      # Try and find the DOM element by ID
       try
         if document.getElementById(messageBoxId)
         
@@ -70,12 +70,12 @@ class window.UiMessageQueue
           @messageBoxDivEl = document.getElementById(messageBoxId)
           
         else
-          # Unable to find El so fall back to alert message
+          # Unable to find DOM element so fall back to alert message
           @useMessageBox = false
           
       catch e
-        # Caught error searching for El so fall back to alert message
-        @useMessageBox = true
+        # Caught error searching for DOM element so fall back to alert message
+        @useMessageBox = false
       
       return
   
@@ -89,7 +89,7 @@ class window.UiMessageQueue
   # Add a message to the queue  
   push: ( message ) =>
   
-    # If we are using an el then add to queue
+    # If we are using a DOM element then add to queue
     if @useMessageBox == true
 
       # if the queue has messages then just add to the end

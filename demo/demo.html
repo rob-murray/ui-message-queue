@@ -27,7 +27,8 @@
                 message queue allowing you to push messages (String) to the queue and 
                 display in via a FIFO (First In First Out) method.
                 @See <a href="https://github.com/rob-murray/ui-message-queue">https://github.com/rob-murray/ui-message-queue</a>.</p>
-        
+            
+            <p>Click the button to add some messages to the queue and watch them each displayed for a specific period of time.</p>
         </header>
 
 
@@ -41,42 +42,50 @@
     </body>
     
     <!-- Import Javascript libs -->
-    <script type="text/javascript" src="ui-message-queue.js"></script>
+    <script type="text/javascript" src="../ui-message-queue.js"></script>
     
     
     <script type="text/javascript">
-
-var options, myQ;
-
-// Set up options
-options = {
-  message_box_div_id: "msg-output",
-  timeout_val: 1500,
-  empty_display_str: "Queue empty..."
-};
-
-// Create UIMessageQueue with options
-myQ = new UiMessageQueue(options);
-
-// Method called when user clicks button
-function run(){
+        
+(function() {
     
-    var DELAY_TIME = 10000;//Ten seconds
-    
-    myQ.push("message 1");
-    myQ.push("message 2");
-    myQ.push("message 3");
-    myQ.push("message 4");
-    myQ.push("message 5");
+    "use strict";
 
+    var options, myQ;
+    var messageDisplayTime = 1500;//1.5 secs
 
-    setTimeout(function(){
-        myQ.push("This is a delayed message!!");
-    }, DELAY_TIME);
-}
+    // Set up options
+    options = {
+        message_box_div_id: "msg-output",
+        timeout_val: messageDisplayTime,
+        empty_display_str: "Queue empty..."
+    };
 
-//assign onclick event to button
-document.getElementById("init").onclick = run;
+    // Create UIMessageQueue with options
+    myQ = new UiMessageQueue(options);
+
+    // Method called when user clicks button
+    function run(){
+
+        var DELAY_TIME = 10000;//Ten seconds
+
+        //add sequence of messages to queue
+        myQ.push("message 1");
+        myQ.push("message 2");
+        myQ.push("message 3");
+        myQ.push("message 4");
+        myQ.push("message 5");
+
+        //add a message delayed
+        setTimeout(function(){
+            myQ.push("This is a delayed message!!");
+        }, DELAY_TIME);
+    }
+
+    //assign onclick event to button
+    document.getElementById("init").onclick = run;
+
+}());
         
     </script>    
     

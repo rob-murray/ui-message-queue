@@ -1,7 +1,7 @@
 
 /*
 ui-message-queue - a User Message Queue Javascript implementation
-(c) 2012 Robert Murray
+(c) 2013 Robert Murray
 @see https://github.com/rob-murray/ui-message-queue
 UiMessageQueue may be freely distributed under the MIT license
 */
@@ -57,7 +57,7 @@ UiMessageQueue may be freely distributed under the MIT license
           this.useMessageBox = false;
         }
       } catch (e) {
-        this.useMessageBox = true;
+        this.useMessageBox = false;
       }
     };
 
