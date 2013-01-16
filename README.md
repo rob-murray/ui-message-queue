@@ -8,9 +8,13 @@ ui-message-queue is a Javascript implementation of a message queue allowing you 
 
 This repository contains the following sections:
 
-1. src - this contains the source Coffeescript.
+1. src - this contains the source Coffeescript
 2. ui-message-queue.js - this is the Javascript implementation (copy this to use!)
 3. demo - this contains a simple demo to show the functionality
+
+**Demo**
+
+The demo from this project is available [here](https://rob-murray.github.com/ui-message-queue) - check it out now for basic usage
 
 ## Getting started
 
