@@ -14,7 +14,7 @@ This repository contains the following sections:
 
 **Demo**
 
-The demo from this project is available [here](https://rob-murray.github.com/ui-message-queue) - check it out now for basic usage
+The demo from this project is available [here](http://rob-murray.github.com/ui-message-queue) - check it out now for basic usage
 
 ## Getting started
 
