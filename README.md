@@ -25,7 +25,7 @@ How to use:
 2) Import source file
 
 
-```
+```javascript
 	<script type="text/javascript" src="ui-message-queue.js"></script>
 ```
 
@@ -36,7 +36,7 @@ How to use:
 
 Takes options in the form of an object literal:
 
-```
+```javascript
     options = {
         message_box_div_id: "output-id",
         timeout_val: TIME_IN_MSECS,
@@ -55,7 +55,7 @@ If no options passed then throws "Missing arguments" Error.
 4) Create instance of object passing options
 
 
-```
+```javascript
     var myMq = new uiMessageQueue(options);
 ```
 
@@ -63,7 +63,7 @@ If no options passed then throws "Missing arguments" Error.
 5) Add messages to the queue
 
 
-```
+```javascript
     myMq.push("Here is a message");
     myMq.push("Here is another one");
     myMq.push("Finally, one more message");
