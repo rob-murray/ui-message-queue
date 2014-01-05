@@ -1,0 +1,14 @@
+{
+    "name": "UiMessageQueue",
+    "description": "UiMessageQueue - a User Message Queue Javascript implementation",
+    "version": "0.0.1",
+    "dependencies": {
+        "jasmine-node": "",
+        "jsdom": "",
+        "jasmine-jquery": ""
+     },
+     "scripts": {
+        "build": "cake build",
+        "test": "cake test"
+    }
+}

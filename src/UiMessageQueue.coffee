@@ -6,9 +6,11 @@ UiMessageQueue may be freely distributed under the MIT license
 ###
 
 
+root = exports ? window
+
 
 # Create class in window namespace
-class window.UiMessageQueue
+class root.UiMessageQueue
 
   "use strict"
 
@@ -35,7 +37,7 @@ class window.UiMessageQueue
       
     else
       
-      throw "Missing arguments. UiMessageQueue requires arguments to run."
+      throw new Error("Missing arguments. UiMessageQueue requires arguments to run.")
     
   # method to set attributes from args passed  
   setAttributes: (attrs)->
@@ -46,20 +48,21 @@ class window.UiMessageQueue
         messageBoxId = attrs.message_box_div_id        
       
       # Test and assign timeout
-      if attrs.timeout_val
+      if attrs.timeoutMiliSecs
       
         #test if timeout_val is numeric
-        if isFinite attrs.timeout_val
+        if isFinite attrs.timeoutMiliSecs
         
-          @timeOut = attrs.timeout_val
+          @timeOut = attrs.timeoutMiliSecs
           
         else
           
-          throw "Invalid argument: timeout_val is not numeric"
-          
-      if attrs.empty_display_str
+          throw new Error("Invalid argument: timeoutMiliSecs is not numeric")
       
-        @emptyDisplayString = attrs.empty_display_str
+
+      if attrs.emptyDisplayString
+      
+        @emptyDisplayString = attrs.emptyDisplayString
         
       # Try and find the DOM element by ID
       try
