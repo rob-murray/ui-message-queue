@@ -83,7 +83,6 @@ class root.UiMessageQueue
 
 	# internal; grab the first message off the stack, display it
 	_processMessageQueue: =>
-
 		
 		if @_messageStack.hasItems()
 
