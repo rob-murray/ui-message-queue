@@ -41,8 +41,8 @@
         
     </body>
     
-    <!-- Import Javascript libs -->
-    <script type="text/javascript" src="https://rawgithub.com/rob-murray/ui-message-queue/master/ui-message-queue.js"></script>
+    <!-- Import Javascript lib -->
+    <script type="text/javascript" src="https://rawgithub.com/rob-murray/ui-message-queue/master/lib/UiMessageQueue-release.js"></script>
     
     
     <script type="text/javascript">
@@ -51,18 +51,15 @@
     
     "use strict";
 
-    var options, myQ;
-    var messageDisplayTime = 1500;//1.5 secs
+    var messageQueue,
+        messageDisplayTime = 1500;//1.5 secs
 
-    // Set up options
-    options = {
+    // Create UIMessageQueue with options
+    messageQueue = new UiMessageQueue(options = {
         message_box_div_id: "msg-output",
         timeout_val: messageDisplayTime,
         empty_display_str: "Queue empty..."
-    };
-
-    // Create UIMessageQueue with options
-    myQ = new UiMessageQueue(options);
+    });
 
     // Method called when user clicks button
     function run(){
@@ -70,15 +67,15 @@
         var DELAY_TIME = 10000;//Ten seconds
 
         //add sequence of messages to queue
-        myQ.push("message 1");
-        myQ.push("message 2");
-        myQ.push("message 3");
-        myQ.push("message 4");
-        myQ.push("message 5");
+        messageQueue.push("message 1");
+        messageQueue.push("message 2");
+        messageQueue.push("message 3");
+        messageQueue.push("message 4");
+        messageQueue.push("message 5");
 
         //add a message delayed
         setTimeout(function(){
-            myQ.push("This is a delayed message!!");
+            messageQueue.push("This is a delayed message!!");
         }, DELAY_TIME);
     }
 
