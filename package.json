@@ -1,14 +1,18 @@
 {
     "name": "UiMessageQueue",
     "description": "UiMessageQueue - a User Message Queue Javascript implementation",
+    "homepage" : "https://github.com/rob-murray/ui-message-queue/",
+    "author" : "Rob Murray <robmurray17@gmail.com>",
     "version": "0.0.1",
+    "repository" : {"type": "git", "url": "git://github.com/rob-murray/ui-message-queue.git"},
+    "license": "MIT",
     "dependencies": {
-        "jasmine-node": "",
-        "jsdom": "",
-        "jasmine-jquery": ""
-     },
+        "jasmine-node": "~1.12.0",
+        "jsdom": "~0.8.10"
+    },
      "scripts": {
-        "build": "cake build",
+        "build": "cake build.release",
+        "pretest": "cake build.test",
         "test": "cake test"
     }
 }
