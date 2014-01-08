@@ -23,7 +23,7 @@ buildForTest = (callback) ->
 buildForRelease = (callback) ->
   #fs.mkdir 'lib', 0o0755
   print "Building project for release..."
-  spawnAndRun 'coffee', ['--join', './lib/UiMessageQueue-rel.js', '--compile', '--output', 'lib', 'src'], callback
+  spawnAndRun 'coffee', ['--join', './lib/UiMessageQueue-release.js', '--compile', '--output', 'lib', 'src'], callback
   print "\n"  
 
 task 'test', 'Run all tests', ->
