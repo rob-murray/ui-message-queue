@@ -2,8 +2,8 @@
 # Imports
 
 global.window = require("jsdom").jsdom().createWindow();
-jQuery = require('jQuery').jQuery
-global.jQuery = global.$ = jQuery
+#jQuery = require('jQuery').jQuery
+#global.jQuery = global.$ = jQuery
 
 DomDisplay = require('../lib/DomDisplay').DomDisplay
 
