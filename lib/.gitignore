@@ -1,0 +1,6 @@
+# Ignore everything
+*
+
+# But not the built file
+!UiMessageQueue-release.js
+!.gitignore
