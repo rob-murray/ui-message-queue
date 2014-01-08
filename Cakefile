@@ -14,14 +14,23 @@ spawnAndRun = (command, args, callback) ->
 test = (callback) ->
   spawnAndRun 'jasmine-node', ['--coffee', 'spec'], callback
 
-build = (callback) ->
+buildForTest = (callback) ->
   #fs.mkdir 'lib', 0o0755
-  print "Building..."
+  print "Building project for testing..."
   spawnAndRun 'coffee', ['--compile', '--output', 'lib', 'src'], callback
   print "\n"
+
+buildForRelease = (callback) ->
+  #fs.mkdir 'lib', 0o0755
+  print "Building project for release..."
+  spawnAndRun 'coffee', ['--join', './lib/UiMessageQueue-rel.js', '--compile', '--output', 'lib', 'src'], callback
+  print "\n"  
 
 task 'test', 'Run all tests', ->
   test()
 
-task 'build', 'Build the Javascript output', ->
-  build()
+task 'build.test', 'Build the Javascript output for testing', ->
+  buildForTest()
+
+task 'build.release', 'Build the Javascript output for release version', ->
+  buildForRelease()
