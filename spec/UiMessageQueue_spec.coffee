@@ -1,21 +1,26 @@
-#global.window = require("jsdom").jsdom().createWindow();
 
-window = require('jsdom').jsdom('<html><body><div id="myDiv"></div></body></html>').createWindow()
+# Imports
 
+global.window = require("jsdom").jsdom().createWindow()
+jQuery = require('jQuery').jQuery
+global.jQuery = global.$ = jQuery
+
+AlertDisplay = require('../lib/AlertDisplay').AlertDisplay
+DomDisplay = require('../lib/DomDisplay').DomDisplay
 UiMessageQueue = require('../lib/UiMessageQueue').UiMessageQueue
-#$ = require("jasmine-jquery")
+FifoQueue = require('../lib/FifoQueue').FifoQueue
+
 
 describe "UiMessageQueue", ->
 
-    fixture = null
+    describe 'handle options', ->
 
-    describe 'handling options', ->
-
-        it 'should create instance with valid options', ->
+        it 'should create instance with all, valid options', ->
 
             options = 
-                timeoutMiliSecs: 1
+                delay: 1
                 message_box_div_id: "myDiv"
+                emptyDisplayString: "hello world"
 
             messageQueue = new UiMessageQueue(options)
             expect(messageQueue).toBeDefined()
@@ -31,39 +36,180 @@ describe "UiMessageQueue", ->
             ).toThrow 'Missing arguments. UiMessageQueue requires arguments to run.'
 
 
-        it 'throws Exception if timeoutMiliSecs is a string', ->
+        describe 'using the delay option', ->
+
+            it 'throws Exception if delay is a string', ->
+
+                options = 
+                    delay: "foo"
+
+                expect(->
+
+                    messageQueue = new UiMessageQueue(options)
+
+                ).toThrow 'Invalid argument: delay is not numeric'
+
+
+            it 'assigns value when valid', ->
+
+                options = 
+                    delay: 999
+
+                messageQueue = new UiMessageQueue(options)
+
+                expect(messageQueue._delay).toEqual(999)
+
+
+        describe 'using the emptyDisplayString option', ->
+
+            it 'assigns value when valid', ->
+
+                options = 
+                    emptyDisplayString: "foo"
+
+                messageQueue = new UiMessageQueue(options)
+
+                expect(messageQueue._emptyDisplayString).toEqual("foo")
+
+
+            it 'throws Exception if emptyDisplayString is not a string', ->
+
+                # todo: do we really care about this? its not a comprehensive test anyway
+                options = 
+                    emptyDisplayString: true
+
+                expect(->
+
+                    messageQueue = new UiMessageQueue(options)
+
+                ).toThrow 'Invalid argument: emptyDisplayString is not a String'
+
+
+        describe 'default options', ->
+
+            it 'uses default value of 1000 for delay', ->
+
+                options = 
+                    message_box_div_id: "myDiv"
+
+                messageQueue = new UiMessageQueue(options)
+
+                expect(messageQueue._delay).toEqual(1000)
+
+
+            it 'uses default value of "" for emptyDisplayString', ->
+
+                options = 
+                    message_box_div_id: "myDiv"
+
+                messageQueue = new UiMessageQueue(options)
+
+                expect(messageQueue._emptyDisplayString).toEqual("")  
+
+
+    describe 'select display method', ->
+
+        it 'given options without dom element id should select alert display', ->
 
             options = 
-                timeoutMiliSecs: "foo"
-
-            expect(->
-
-                new UiMessageQueue(options)
-
-            ).toThrow 'Invalid argument: timeoutMiliSecs is not numeric'
-
-
-    describe 'displays messages', ->
-
-        it 'displays one message immediately', ->
-
-            #el = document.createElement("div");
-            #el.id = "myDiv"
-            #document.body.appendChild(el)
-
-            #loadFixtures('fixture.html');
-            #fixture = $('#tabs')
-
-            #spyOn(global.window.document, 'getElementById').andReturn(el)
-
-            options = 
-                timeoutMiliSecs: 1
-                message_box_div_id: "myDiv"
+                delay: 999
 
             messageQueue = new UiMessageQueue(options)
-            messageQueue.push "Foo"
 
-            expect(el.innerHtml).toBe("Foo")
+            expect(messageQueue._displayer instanceof AlertDisplay).toBeTruthy()
+
+
+        it 'given invalid dom element id should select alert display', ->
+
+            options = 
+                delay: 1
+                outputElementId: ""
+
+            messageQueue = new UiMessageQueue(options)
+
+            expect(messageQueue._displayer instanceof AlertDisplay).toBeTruthy()
+
+
+    describe 'messages', ->
+
+        messageQueue = null
+
+        beforeEach ->
+            options = 
+                delay: 10000000
+                outputElementId: ""
+
+            mockDisplayer = createSpyObj('mockDisplayer', ['displayMessage']) # just mock the method here, we dont need a response
+            
+            messageQueue = new UiMessageQueue(options)
+            messageQueue._displayer = mockDisplayer # todo: we cant mock any instance with Jasmine so have to 'inject' it +repeated below
+
+            jasmine.Clock.useMock()
+
+        afterEach ->
+            messageQueue = null
+
+        describe 'add messages to the queue', ->
+
+            it 'should add message to queue', ->
+
+                mockQueue = createSpyObj('mockQueue', ['push', 'hasItems', 'getItem'])
+                messageQueue._messageStack = mockQueue
+
+                messageQueue.push "message"
+
+                expect(mockQueue.push).toHaveBeenCalledWith("message")
+
+            it 'should only add message to queue if a string', ->
+
+                mockQueue = createSpyObj('mockQueue', ['push', 'hasItems', 'getItem'])
+                messageQueue._messageStack = mockQueue
+
+                messageQueue.push new Object()
+
+                expect(mockQueue.push).not.toHaveBeenCalled()
+
+
+        describe 'display messages from queue', ->
+
+            it 'should pass display to display strategy', ->
+
+                mockDisplayer = createSpyObj('mockDisplayer', ['displayMessage'])
+
+                messageQueue._displayer = mockDisplayer
+
+                messageQueue._displayMessage "foo" # todo: do i really write this test
+
+                expect(mockDisplayer.displayMessage).toHaveBeenCalledWith("foo")
+
+            it 'should display message from queue when pushed', ->
+
+                mockDisplayer = createSpyObj('mockDisplayer', ['displayMessage'])
+
+                messageQueue._displayer = mockDisplayer
+
+                messageQueue.push "foo"
+
+                expect(mockDisplayer.displayMessage).toHaveBeenCalledWith("foo")
+
+            it 'should display message from queue when pushed after interval', ->
+
+                mockDisplayer = createSpyObj('mockDisplayer', ['displayMessage'])
+
+                messageQueue._displayer = mockDisplayer
+
+                messageQueue.push "foo"
+
+                expect(mockDisplayer.displayMessage).not.toHaveBeenCalled();
+
+                jasmine.Clock.tick(100000001);
+
+                expect(mockDisplayer.displayMessage).toHaveBeenCalled()
+
+
+
+
+
 
 
 
