@@ -1,0 +1,54 @@
+
+# Imports
+
+global.window = require("jsdom").jsdom().createWindow();
+jQuery = require('jQuery').jQuery
+global.jQuery = global.$ = jQuery
+
+DomDisplay = require('../lib/DomDisplay').DomDisplay
+
+
+describe "DomDisplay", ->
+
+    display = null
+
+    beforeEach ->
+
+        spyOn(document, 'getElementById').andReturn({})
+
+        display = new DomDisplay("myDiv")
+
+    it 'should create instance from constructor', ->
+
+        expect(display).toBeDefined()
+
+    it 'ensures that dom element id is supplied', -> 
+
+        expect(->
+
+            new DomDisplay()
+
+        ).toThrow 'Missing DOM Element Id param.'
+
+    # todo: this is the same as 'should create instance from constructor'
+    it 'creates instance when valid dom element id', ->
+
+        # to do
+
+    it 'throws Exception when dom element id is invalid', -> 
+
+        expect(->
+
+            new DomDisplay("foo")
+
+        ).toThrow "Error: cannot find Element Id: 'foo'."
+
+
+    it 'respond to displayMessage method', ->
+
+        expect(typeof display.displayMessage).toBe("function")
+
+
+
+
+
