@@ -56,9 +56,9 @@
 
     // Create UIMessageQueue with options
     messageQueue = new UiMessageQueue({
-        message_box_div_id: "msg-output",
-        timeout_val: messageDisplayTime,
-        empty_display_str: "Queue empty..."
+        outputElementId: "msg-output",
+        delay: messageDisplayTime,
+        emptyDisplayString: "Queue empty..."
     });
 
     // Method called when user clicks button
