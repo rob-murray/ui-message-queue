@@ -6,8 +6,10 @@
     "version": "0.9.0",
     "repository" : {"type": "git", "url": "git://github.com/rob-murray/ui-message-queue.git"},
     "license": "MIT",
+    "dependencies": {
+        "coffee-script": "latest"
+    },
     "devDependencies": {
-        "coffee-script": "latest",
         "jasmine-node": "~1.12.0",
         "jsdom": "~0.8.10"
     },

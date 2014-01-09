@@ -3,6 +3,4 @@ node_js:
   - 0.8
   - 0.6
 before_script:
-  ./node_modules/.bin/cake build
-before_install:
-  - npm install coffee-script
+  ./node_modules/.bin/cake build.test
