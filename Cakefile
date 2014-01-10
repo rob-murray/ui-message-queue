@@ -12,7 +12,7 @@ spawnAndRun = (command, args, callback) ->
     callback?() if code is 0
 
 test = (callback) ->
-  spawnAndRun 'jasmine-node', ['--coffee', 'spec'], callback
+  spawnAndRun 'jasmine-node', ['--coffee', './test/spec'], callback
 
 buildForTest = (callback) ->
   #fs.mkdir 'lib', 0o0755
@@ -24,13 +24,22 @@ buildForRelease = (callback) ->
   #fs.mkdir 'lib', 0o0755
   print "Building project for release..."
   spawnAndRun 'coffee', ['--join', './lib/UiMessageQueue-release.js', '--compile', '--output', 'lib', 'src'], callback
-  print "\n"  
+  print "\n"
+
+runCodeQualityTools = (callback) ->
+  print "Running code quality tools"
+  spawnAndRun 'coffeelint', ['src/'], callback
+  print "\n"
 
 task 'test', 'Run all tests', ->
   test()
+
+task 'test.quality', 'Analyse code quality', ->
+  runCodeQualityTools()
 
 task 'build.test', 'Build the Javascript output for testing', ->
   buildForTest()
 
 task 'build.release', 'Build the Javascript output for release version', ->
   buildForRelease()
+
