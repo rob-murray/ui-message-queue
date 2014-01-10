@@ -29,10 +29,12 @@ class root.FifoQueue
         @getCount() > 0
 
 
-    # Get, remove and return the first item in the queue; unless queue empty then throws Error - should check hasItems() first
+    # Get, remove and return the first item in the queue,
+    # unless queue empty then throws Error - should check hasItems() first
     getItem: () ->
 
-        throw new Error("Queue empty, ensure not empty by using FifoQueue.hasItems().") if not @hasItems()
+        if not @hasItems()
+            throw new Error("Queue empty, ensure not empty by using FifoQueue.hasItems().")
 
         item = @_stack[0]
         @_stack.shift()

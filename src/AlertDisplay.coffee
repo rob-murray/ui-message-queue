@@ -7,7 +7,7 @@ class root.AlertDisplay
 
     "use strict"
 
-    displayMessage: (message) =>
+    displayMessage: (message) ->
 
-        alert message
+        alert(message)
 

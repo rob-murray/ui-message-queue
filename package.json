@@ -11,7 +11,8 @@
     },
     "devDependencies": {
         "jasmine-node": "~1.12.0",
-        "jsdom": "~0.8.10"
+        "jsdom": "~0.8.10",
+        "coffeelint": "latest"
     },
      "scripts": {
         "build": "./node_modules/.bin/cake build.release",

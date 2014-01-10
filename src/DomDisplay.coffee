@@ -12,7 +12,8 @@ class root.DomDisplay
 
     constructor: (domElementId) ->
 
-        throw new Error("Error: cannot find Element Id: '#{domElementId}'.") if not @_domElement = root.document.getElementById(domElementId)
+        if not @_domElement = root.document.getElementById(domElementId)
+            throw new Error("Error: cannot find Element Id: '#{domElementId}'.")
 
     displayMessage: (message) =>
 
