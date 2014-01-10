@@ -16,13 +16,13 @@ describe "DomDisplay", ->
 
         spyOn(document, 'getElementById').andReturn({})
 
-        display = new DomDisplay("myDiv")
+        #display = new DomDisplay("myDiv")
 
-    it 'should create instance from constructor', ->
+    xit 'should create instance from constructor', ->
 
         expect(display).toBeDefined()
 
-    it 'ensures that dom element id is supplied', -> 
+    xit 'ensures that dom element id is supplied', -> 
 
         expect(->
 
@@ -31,11 +31,11 @@ describe "DomDisplay", ->
         ).toThrow 'Missing DOM Element Id param.'
 
     # todo: this is the same as 'should create instance from constructor'
-    it 'creates instance when valid dom element id', ->
+    xit 'creates instance when valid dom element id', ->
 
         # to do
 
-    it 'throws Exception when dom element id is invalid', -> 
+    xit 'throws Exception when dom element id is invalid', -> 
 
         expect(->
 
@@ -44,7 +44,7 @@ describe "DomDisplay", ->
         ).toThrow "Error: cannot find Element Id: 'foo'."
 
 
-    it 'respond to displayMessage method', ->
+    xit 'respond to displayMessage method', ->
 
         expect(typeof display.displayMessage).toBe("function")
 
