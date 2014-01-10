@@ -8,22 +8,23 @@ ui-message-queue is a Javascript implementation of a message queue allowing you 
 
 The **goal** is to be as simple as possible to include and use, it's meant for displaying messages to website users rather than queuing backend type tasks.
 
-**Check out** a demonstration [here](http://rob-murray.github.com/ui-message-queue).
+**Check out** a demo [here](http://rob-murray.github.com/ui-message-queue).
 
 Features:
 
-* Add messages to queue; displayed in FIFO method
-* Select the DOM element to update, falling back to Javascript Alert if not found
-* No Jquery! Whilst fantastic as it is, can be a pain to have to include Jquery just for one library.
+* Add messages to queue; displayed in FIFO order.
+* Select the DOM element to update, falling back to Javascript Alert if not found.
+* No jQuery! Whilst fantastic as it is, can be a pain to have to include jQuery just for one library so we're jQuery free zone.
 
 ## Contents
 
 This repository contains the following sections:
 
-1. `src` - this contains the source Coffeescript
-2. `lib/UiMessageQueue-release.js` - this is the compiled Javascript (copy this to use!)
-3. `spec/*_spec.coffee` - the tests implemented in Jasmine
-4. demo - demo from this project is available [here](http://rob-murray.github.com/ui-message-queue) - check it out now for example usage
+1. `src` - this contains the source Coffeescript.
+2. `lib/UiMessageQueue-release.js` - the source is then compiled into this Javascript file (copy this to use!).
+3. `test/spec/*_spec.coffee` - the tests implemented in Jasmine.
+4. demo - a real life webpage with proper Javascript to test this project.
+5. A working demo is available [here](http://rob-murray.github.com/ui-message-queue) - check it out to see what UiMessageQueue can do.
 
 
 ## Getting started
@@ -36,7 +37,7 @@ How to use:
 
 
 ```javascript
-	<script type="text/javascript" src="UiMessageQueue-release.js"></script>
+    <script type="text/javascript" src="UiMessageQueue-release.js"></script>
 ```
 
 
@@ -58,7 +59,7 @@ These are as follows:
 * delay [OPTIONAL] - Time in milisecs to display each message for. Throws "Invalid argument" Error if not numeric. Default val is 1000
 * emptyDisplayString [OPTIONAL] - This is message displayed when no messages are in the queue. Default val is "..."
 
-If no options passed then throws "Missing arguments" Error.
+If no options passed then it throws "Missing arguments" Error.
 
 
 4) Create instance of object passing options
@@ -78,9 +79,9 @@ If no options passed then throws "Missing arguments" Error.
     messageQueue.push("Finally, one more message");
 ```
 
-These will be displayed in a FIFO method.
+These will be displayed in a FIFO method with each message for that set period of time.
 
-Please see the demo for full example.
+See the demo for a cool, super useful example.
 
 ## Contributions
 
@@ -88,7 +89,36 @@ Please use the GitHub pull-request mechanism to submit contributions.
 
 Edit the coffeescript source and then compile to js - Do not edit UiMessageQueue-release.js
 
+### Testing
+
 Checkout the `Cakefile` for build and test commands.
+
+```bash
+# do a build for the test suite
+cake build.test
+
+# run tests
+cake test
+```
+
+### Code style
+
+Run [CoffeeLint](http://www.coffeelint.org/) over the source:
+
+```bash
+cake test.quality
+# or the indentical call
+coffeelint src/
+```
+
+### Build
+
+To produce a release build, run the build script; this compiles to JS and merges into one file to produce `src/UiMessageQueue-release.js`.
+
+```bash
+cake build.release
+```
+
 
 ## License
 
