@@ -5,7 +5,7 @@ global.window = require("jsdom").jsdom().createWindow();
 #jQuery = require('jQuery').jQuery
 #global.jQuery = global.$ = jQuery
 
-DomDisplay = require('../lib/DomDisplay').DomDisplay
+DomDisplay = require('../../lib/DomDisplay').DomDisplay
 
 
 describe "DomDisplay", ->

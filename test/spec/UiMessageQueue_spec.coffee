@@ -5,10 +5,10 @@ global.window = require("jsdom").jsdom().createWindow()
 #jQuery = require('jQuery').jQuery
 #global.jQuery = global.$ = jQuery
 
-AlertDisplay = require('../lib/AlertDisplay').AlertDisplay
-DomDisplay = require('../lib/DomDisplay').DomDisplay
-UiMessageQueue = require('../lib/UiMessageQueue').UiMessageQueue
-FifoQueue = require('../lib/FifoQueue').FifoQueue
+AlertDisplay = require('../../lib/AlertDisplay').AlertDisplay
+DomDisplay = require('../../lib/DomDisplay').DomDisplay
+UiMessageQueue = require('../../lib/UiMessageQueue').UiMessageQueue
+FifoQueue = require('../../lib/FifoQueue').FifoQueue
 
 
 describe "UiMessageQueue", ->

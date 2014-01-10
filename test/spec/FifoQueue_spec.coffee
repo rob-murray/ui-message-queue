@@ -1,6 +1,6 @@
 
 # Imports
-FifoQueue = require('../lib/FifoQueue').FifoQueue
+FifoQueue = require('../../lib/FifoQueue').FifoQueue
 
 
 describe "FifoQueue", ->
