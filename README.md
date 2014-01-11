@@ -23,7 +23,7 @@ This repository contains the following sections:
 1. `src` - this contains the source Coffeescript.
 2. `lib/UiMessageQueue-release.js` - the source is then compiled into this Javascript file (copy this to use!).
 3. `test/spec/*_spec.coffee` - the tests implemented in Jasmine.
-4. demo - a real life webpage with proper Javascript to test this project.
+4. `test/html/index.html` - some real life html with proper Javascript to test this project.
 5. A working demo is available [here](http://rob-murray.github.com/ui-message-queue) - check it out to see what UiMessageQueue can do.
 
 
