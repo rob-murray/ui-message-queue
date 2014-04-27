@@ -1,6 +1,7 @@
 # ui-message-queue AKA User Message Queue Javascript implementation
 
 [![Build Status](https://travis-ci.org/rob-murray/ui-message-queue.png?branch=master)](https://travis-ci.org/rob-murray/ui-message-queue)
+[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/ui-message-queue/badge.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/ui-message-queue)
 
 ## Description
 
