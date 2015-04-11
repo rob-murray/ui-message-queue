@@ -1,13 +1,8 @@
-
-# testing helper
-root = exports ? window
-
-
-class root.AlertDisplay
-
+class AlertDisplay
     "use strict"
 
     displayMessage: (message) ->
-
         alert(message)
 
+root = exports ? window
+root.AlertDisplay = AlertDisplay

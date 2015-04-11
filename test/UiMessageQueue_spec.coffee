@@ -1,191 +1,158 @@
-
 # Imports
+chai = require 'chai'
+expect = chai.expect
+sinon = require 'sinon'
 
-global.window = require("jsdom").jsdom().createWindow()
-#jQuery = require('jQuery').jQuery
-#global.jQuery = global.$ = jQuery
-
-AlertDisplay = require('../../lib/AlertDisplay').AlertDisplay
-DomDisplay = require('../../lib/DomDisplay').DomDisplay
-UiMessageQueue = require('../../lib/UiMessageQueue').UiMessageQueue
-FifoQueue = require('../../lib/FifoQueue').FifoQueue
-
+FifoQueue = require('../src/FifoQueue').FifoQueue
+DomDisplay = require('../src/DomDisplay').DomDisplay
+AlertDisplay = require('../src/AlertDisplay').AlertDisplay
+UiMessageQueue = require('../src/UiMessageQueue').UiMessageQueue
 
 describe "UiMessageQueue", ->
-
     describe 'handle options', ->
-
         it 'should create instance with all, valid options', ->
 
-            options = 
+            options =
                 delay: 1
                 message_box_div_id: "myDiv"
                 emptyDisplayString: "hello world"
 
             messageQueue = new UiMessageQueue(options)
-            expect(messageQueue).toBeDefined()
+            expect(messageQueue).to.exist
 
 
-        it 'ensures that options are supplied', -> 
-
+        it 'ensures that options are supplied', ->
             expect(->
-
                 new UiMessageQueue()
-
-
-            ).toThrow 'Missing arguments. UiMessageQueue requires arguments to run.'
+            ).to.throw 'Missing arguments. UiMessageQueue requires arguments to run.'
 
 
         describe 'using the delay option', ->
-
             it 'throws Exception if delay is a string', ->
-
-                options = 
+                options =
                     delay: "foo"
-
                 expect(->
-
                     messageQueue = new UiMessageQueue(options)
-
-                ).toThrow 'Invalid argument: delay is not numeric'
+                ).to.throw 'Invalid argument: delay is not numeric'
 
 
             it 'assigns value when valid', ->
 
-                options = 
+                options =
                     delay: 999
 
                 messageQueue = new UiMessageQueue(options)
 
-                expect(messageQueue._delay).toEqual(999)
+                expect(messageQueue._delay).to.equal(999)
 
 
         describe 'using the emptyDisplayString option', ->
 
             it 'assigns value when valid', ->
 
-                options = 
+                options =
                     emptyDisplayString: "foo"
 
                 messageQueue = new UiMessageQueue(options)
 
-                expect(messageQueue._emptyDisplayString).toEqual("foo")
+                expect(messageQueue._emptyDisplayString).to.equal("foo")
 
 
             it 'throws Exception if emptyDisplayString is not a string', ->
 
                 # todo: do we really care about this? its not a comprehensive test anyway
-                options = 
+                options =
                     emptyDisplayString: true
 
                 expect(->
 
                     messageQueue = new UiMessageQueue(options)
 
-                ).toThrow 'Invalid argument: emptyDisplayString is not a String'
+                ).to.throw 'Invalid argument: emptyDisplayString is not a String'
 
 
         describe 'default options', ->
 
             it 'uses default value of 1000 for delay', ->
 
-                options = 
+                options =
                     message_box_div_id: "myDiv"
 
                 messageQueue = new UiMessageQueue(options)
 
-                expect(messageQueue._delay).toEqual(1000)
+                expect(messageQueue._delay).to.equal(1000)
 
 
             it 'uses default value of "" for emptyDisplayString', ->
 
-                options = 
+                options =
                     message_box_div_id: "myDiv"
 
                 messageQueue = new UiMessageQueue(options)
 
-                expect(messageQueue._emptyDisplayString).toEqual("")  
+                expect(messageQueue._emptyDisplayString).to.equal("")
 
 
     describe 'select display method', ->
 
         it 'given options without dom element id should select alert display', ->
 
-            options = 
+            options =
                 delay: 999
 
             messageQueue = new UiMessageQueue(options)
 
-            expect(messageQueue._displayer instanceof AlertDisplay).toBeTruthy()
+            expect(messageQueue._displayer).to.be.an.instanceof(AlertDisplay)
 
 
         it 'given invalid dom element id should select alert display', ->
 
-            options = 
+            options =
                 delay: 1
                 outputElementId: ""
 
             messageQueue = new UiMessageQueue(options)
 
-            expect(messageQueue._displayer instanceof AlertDisplay).toBeTruthy()
-
+            expect(messageQueue._displayer).to.be.an.instanceof(AlertDisplay)
 
     describe 'receive and display messages', ->
-
-        messageQueue = null
-        mockDisplayer = null
-
         beforeEach ->
-            options = 
+            options =
                 delay: 10000000
                 outputElementId: ""
 
-            mockDisplayer = createSpyObj('mockDisplayer', ['displayMessage']) # just mock the method here, we dont need a response
-            
-            messageQueue = new UiMessageQueue(options)
-            messageQueue._displayer = mockDisplayer # todo: we cant mock any instance with Jasmine so have to 'inject' it +repeated below
+            @mockDisplayer = sinon.createStubInstance(AlertDisplay)
 
-            jasmine.Clock.useMock() # mock the clock for all of these
+            @messageQueue = new UiMessageQueue(options)
+            @messageQueue._displayer = @mockDisplayer
 
-        afterEach ->
-            messageQueue = null
 
         describe 'add messages to the queue', ->
 
             it 'should add message to queue', ->
+                fakeQueue = sinon.stub(new FifoQueue)
+                @messageQueue._messageStack = fakeQueue
 
-                mockQueue = createSpyObj('mockQueue', ['push', 'hasItems', 'getItem'])
-                messageQueue._messageStack = mockQueue
+                @messageQueue.push "message"
 
-                messageQueue.push "message"
-
-                expect(mockQueue.push).toHaveBeenCalledWith("message")
+                expect(fakeQueue.push.calledWith("message")).be.true
 
             it 'should only add message to queue if a string', ->
 
-                mockQueue = createSpyObj('mockQueue', ['push', 'hasItems', 'getItem'])
-                messageQueue._messageStack = mockQueue
+                fakeQueue = sinon.stub(new FifoQueue)
+                @messageQueue._messageStack = fakeQueue
 
-                messageQueue.push new Object()
+                @messageQueue.push new Object()
 
-                expect(mockQueue.push).not.toHaveBeenCalled()
+                expect(fakeQueue.push.notCalled).to.be.true
 
 
         describe 'display messages from queue', ->
-
-            it 'should pass display to display strategy', ->
-
-                messageQueue._displayMessage "foo" # todo: do i really write this test
-
-                expect(mockDisplayer.displayMessage).toHaveBeenCalledWith("foo")
-
             it 'should display message from queue when pushed', ->
+                @messageQueue.push "foo"
+                expect(@mockDisplayer.displayMessage.calledWith("foo")).to.be.true
 
-                messageQueue.push "foo"
-
-                expect(mockDisplayer.displayMessage).toHaveBeenCalledWith("foo")
-
-            xit 'should display first message immediately then the next after interval', ->
+            xit 'xx should display first message immediately then the next after interval', ->
 
                 # cannot get this test to work properly :(
 
@@ -201,11 +168,11 @@ describe "UiMessageQueue", ->
 
                 messageQueue.push "foo"
 
-                jasmine.Clock.tick 10000010 
+                jasmine.Clock.tick 10000010
 
                 expect(mockDisplayer.displayMessage.callCount).toEqual(3)
 
-            xit 'should display messages in first in first out strategy', ->
+            xit 'xx should display messages in first in first out strategy', ->
 
                 # cannot get this test to work properly :(
 
@@ -224,12 +191,4 @@ describe "UiMessageQueue", ->
 
                 #expect(mockDisplayer.displayMessage).toHaveBeenCalledWith("message3")
                 expect(mockDisplayer.displayMessage.mostRecentCall.args[0]).toEqual("message3")
-
-
-
-
-
-
-
-
 

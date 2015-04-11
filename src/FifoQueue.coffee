@@ -1,9 +1,6 @@
-
-# testing helper
-root = exports ? window
-
 # A First In First Out (FIFO) queue implementation
-class root.FifoQueue
+#
+class FifoQueue
 
     "use strict"
 
@@ -39,3 +36,6 @@ class root.FifoQueue
         item = @_stack[0]
         @_stack.shift()
         return item
+
+root = exports ? window
+root.FifoQueue = FifoQueue

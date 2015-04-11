@@ -5,16 +5,13 @@ UiMessageQueue - a User Message Queue Javascript implementation
 UiMessageQueue may be freely distributed under the MIT license
 ###
 
-# testing helper
-root = exports ? window
-
 # Imports
-AlertDisplay = root.AlertDisplay || require('../lib/AlertDisplay').AlertDisplay
-DomDisplay = root.DomDisplay || require('../lib/DomDisplay').DomDisplay
-FifoQueue = root.FifoQueue || require('../lib/FifoQueue').FifoQueue
+root = exports ? window
+FifoQueue = root.FifoQueue || require('../src/FifoQueue').FifoQueue
+DomDisplay = root.DomDisplay || require('../src/DomDisplay').DomDisplay
+AlertDisplay = root.AlertDisplay || require('../src/AlertDisplay').AlertDisplay
 
-class root.UiMessageQueue
-
+class UiMessageQueue
     "use strict"
 
     # default options
@@ -27,7 +24,7 @@ class root.UiMessageQueue
 
     # Create new instance with args as options
     constructor: (args) ->
-    
+
         throw new Error("Missing arguments. UiMessageQueue requires arguments to run.") if not args
 
         # assign ivars
@@ -55,7 +52,7 @@ class root.UiMessageQueue
         if options.delay
 
             throw new Error("Invalid argument: delay is not numeric") if not isFinite options.delay
-      
+
             @_delay = options.delay
 
 
@@ -67,7 +64,7 @@ class root.UiMessageQueue
             catch e
                 @_displayer = new AlertDisplay()
 
-      
+
 
     # add a message to the queue
     push: ( message ) =>
@@ -83,11 +80,11 @@ class root.UiMessageQueue
     _displayMessage: (message) =>
 
         @_displayer.displayMessage message
- 
+
 
     # internal; grab the first message off the stack, display it
     _processMessageQueue: =>
-        
+
         if @_messageStack.hasItems()
 
             self = @
@@ -113,7 +110,7 @@ class root.UiMessageQueue
 
                 # call this method again
                 self._processMessageQueue()
-          
+
             ), self._delay, this
 
             @_triggered = true
@@ -122,3 +119,4 @@ class root.UiMessageQueue
             # stop processing
             @_triggered = false
 
+root.UiMessageQueue = UiMessageQueue
