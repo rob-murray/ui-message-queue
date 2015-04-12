@@ -1,22 +1,39 @@
 {
-    "name": "UiMessageQueue",
-    "description": "UiMessageQueue - a User Message Queue Javascript implementation",
-    "homepage" : "https://github.com/rob-murray/ui-message-queue/",
-    "author" : "Rob Murray <robmurray17@gmail.com>",
-    "version": "0.9.0",
-    "repository" : {"type": "git", "url": "git://github.com/rob-murray/ui-message-queue.git"},
-    "license": "MIT",
-    "dependencies": {
-        "coffee-script": "latest"
-    },
-    "devDependencies": {
-        "jasmine-node": "~1.12.0",
-        "jsdom": "~0.8.10",
-        "coffeelint": "latest"
-    },
-     "scripts": {
-        "build": "./node_modules/.bin/cake build.release",
-        "pretest": "./node_modules/.bin/cake build.test",
-        "test": "./node_modules/.bin/cake test"
-    }
+  "name": "ui-message-queue",
+  "version": "0.9.9",
+  "description": "ui-message-queue - a User Message Queue Javascript implementation",
+  "main": "lib/ui-message-queue.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "latest",
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0",
+    "chai": "^2.2.0",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.2.4",
+    "sinon": "^1.14.1",
+    "coffeelint": "^1.9.3",
+    "grunt-coffeelint": "^0.0.13"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "build": "grunt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rob-murray/ui-message-queue.git"
+  },
+  "author": "Rob Murray <robmurray17@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rob-murray/ui-message-queue/issues"
+  },
+  "homepage": "https://github.com/rob-murray/ui-message-queue"
 }
