@@ -18,11 +18,10 @@ class UiMessageQueue
 
   ###*
   # Create new instance with given options
-  # @param {object} options Object with configuration properties. See README for details.
+  # @param {object} options An optional Object with configuration properties.
+  #   See README for details.
   ###
-  constructor: (options) ->
-    throw new Error("Missing arguments. UiMessageQueue requires arguments to run.") if not options
-
+  constructor: (options = {}) ->
     @_displayer = new AlertDisplay()
     @_delay = UiMessageQueue.DEFAULT_DELAY
     @_emptyDisplayString = UiMessageQueue.DEFAULT_EMPTY_DISPLAY_MESSAGE
