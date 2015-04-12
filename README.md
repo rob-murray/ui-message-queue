@@ -13,46 +13,33 @@ The **goal** is to be as simple as possible to include and use, it's meant for d
 
 Features:
 
+* No jQuery! Whilst fantastic as it is, can this is intended as a standalone library and not rely on other frameworks - so we're a jQuery free zone.
 * Add messages to queue; displayed in FIFO order.
 * Select the DOM element to update, falling back to Javascript Alert if not found.
-* No jQuery! Whilst fantastic as it is, can be a pain to have to include jQuery just for one library so we're jQuery free zone.
-
-## Contents
-
-This repository contains the following sections:
-
-1. `src` - this contains the source Coffeescript.
-2. `lib/UiMessageQueue-release.js` - the source is then compiled into this Javascript file (copy this to use!).
-3. `test/spec/*_spec.coffee` - the tests implemented in Jasmine.
-4. `test/html/index.html` - some real life html with proper Javascript to test this project.
-5. A working demo is available [here](http://rob-murray.github.com/ui-message-queue) - check it out to see what UiMessageQueue can do.
 
 
 ## Getting started
 
 How to use:
 
-1) Copy Javascript source from `lib/UiMessageQueue-release.js` to project
+1) Copy Javascript source from `lib/ui-message-queue.js` to project
 
 2) Import source file
 
-
 ```javascript
-    <script type="text/javascript" src="UiMessageQueue-release.js"></script>
+  <script type="text/javascript" src="ui-message-queue.js"></script>
 ```
 
-
 3) Options
-
 
 Takes options in the form of an object literal:
 
 ```javascript
-    options = {
-        outputElementId: "output-id",
-        delay: TIME_IN_MSECS,
-        emptyDisplayString: "STRING"
-    };
+options = {
+  outputElementId: "output-id",
+  delay: TIME_IN_MILISECONDS,
+  emptyDisplayString: "A String"
+};
 ```
 
 These are as follows:
@@ -65,22 +52,19 @@ If no options passed then it throws "Missing arguments" Error.
 
 4) Create instance of object passing options
 
-
 ```javascript
-    var messageQueue = new UiMessageQueue(options);
+  var messageQueue = new UiMessageQueue(options);
 ```
-
 
 5) Add messages to the queue
 
-
 ```javascript
-    messageQueue.push("Here is a message");
-    messageQueue.push("Here is another one");
-    messageQueue.push("Finally, one more message");
+  messageQueue.push("Here is a message");
+  messageQueue.push("Here is another one");
+  messageQueue.push("Finally, one more message");
 ```
 
-These will be displayed in a FIFO method with each message for that set period of time.
+These will be displayed in a first in-first out manner with each message displayed for the set period of time.
 
 See the demo for a cool, super useful example.
 
@@ -88,18 +72,23 @@ See the demo for a cool, super useful example.
 
 Please use the GitHub pull-request mechanism to submit contributions.
 
-Edit the coffeescript source and then compile to js - Do not edit UiMessageQueue-release.js
+Edit the coffeescript source and then compile to js - Do not edit ui-message-queue.js
+
+## Contents
+
+This repository contains the following sections:
+
+1. `src` - this contains the source Coffeescript.
+2. `lib/ui-message-queue.js` - the source is then compiled into this Javascript file (copy this to use!).
+3. `test/*_spec.coffee` - the tests implemented in Mocha and Chai.
+4. `example/index.html` - some real life html with proper Javascript to test this project.
 
 ### Testing
 
-Checkout the `Cakefile` for build and test commands.
+Run all tests.
 
 ```bash
-# do a build for the test suite
-cake build.test
-
-# run tests
-cake test
+$ grunt test
 ```
 
 ### Code style
@@ -107,17 +96,15 @@ cake test
 Run [CoffeeLint](http://www.coffeelint.org/) over the source:
 
 ```bash
-cake test.quality
-# or the indentical call
-coffeelint src/
+$ grunt coffeelint
 ```
 
 ### Build
 
-To produce a release build, run the build script; this compiles to JS and merges into one file to produce `src/UiMessageQueue-release.js`.
+To produce a release build, run the build script; this compiles to JS and merges into one file to produce `src/ui-message-queue.js`.
 
 ```bash
-cake build.release
+$ grunt build
 ```
 
 

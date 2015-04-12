@@ -1,6 +1,6 @@
 {
   "name": "ui-message-queue",
-  "version": "0.9.9",
+  "version": "0.9.1",
   "description": "ui-message-queue - a User Message Queue Javascript implementation",
   "main": "lib/ui-message-queue.js",
   "directories": {
