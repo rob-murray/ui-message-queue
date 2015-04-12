@@ -19,10 +19,10 @@ describe "UiMessageQueue", ->
       messageQueue = new UiMessageQueue(options)
       expect(messageQueue).to.exist
 
-    it 'ensures that options are supplied', ->
+    it 'allows that options to be optional', ->
       expect(->
         new UiMessageQueue()
-      ).to.throw 'Missing arguments. UiMessageQueue requires arguments to run.'
+      ).to.not.throw /Missing arguments/
 
     describe 'using the delay option', ->
       it 'throws Exception if delay is a string', ->

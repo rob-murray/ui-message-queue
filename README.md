@@ -22,9 +22,9 @@ Features:
 
 How to use:
 
-1) Copy Javascript source from `lib/ui-message-queue.js` to project
+1) Copy Javascript source from `lib/ui-message-queue.js` to your project.
 
-2) Import source file
+2) Import source file.
 
 ```javascript
   <script type="text/javascript" src="ui-message-queue.js"></script>
@@ -43,20 +43,18 @@ options = {
 ```
 
 These are as follows:
-* outputElementId [OPTIONAL] - The ID of the element in the DOM to add messages to. If this is not found then ui-message-queue falls back to using the alert popup box
-* delay [OPTIONAL] - Time in milisecs to display each message for. Throws "Invalid argument" Error if not numeric. Default val is 1000
-* emptyDisplayString [OPTIONAL] - This is message displayed when no messages are in the queue. Default val is "..."
-
-If no options passed then it throws "Missing arguments" Error.
+* `outputElementId` - **[OPTIONAL]** - The ID of the element in the DOM to add messages to. If this is not found then ui-message-queue falls back to using the alert popup box
+* `delay` - **[OPTIONAL]** - Time in milisecs to display each message for. Throws "Invalid argument" Error if not numeric. Default value is 1000 or 1 second.
+* `emptyDisplayString` - **[OPTIONAL]** - This is message displayed when no messages are in the queue. Default val is "..."
 
 
-4) Create instance of object passing options
+4) Create instance of object passing options.
 
 ```javascript
   var messageQueue = new UiMessageQueue(options);
 ```
 
-5) Add messages to the queue
+5) Add messages to the queue.
 
 ```javascript
   messageQueue.push("Here is a message");
