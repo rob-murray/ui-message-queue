@@ -2,5 +2,5 @@
 *
 
 # But not the built file
-!UiMessageQueue-release.js
+!ui-message-queue.js
 !.gitignore

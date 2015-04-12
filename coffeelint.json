@@ -19,7 +19,7 @@
     "max_line_length": {
         "name": "max_line_length",
         "value": 80,
-        "level": "warn",
+        "level": "ignore",
         "limitComments": true
     },
     "line_endings": {
@@ -33,7 +33,7 @@
     },
     "indentation": {
         "name": "indentation",
-        "value": 4,
+        "value": 2,
         "level": "error"
     },
     "camel_case_classes": {
@@ -71,7 +71,7 @@
     },
     "no_empty_param_list": {
         "name": "no_empty_param_list",
-        "level": "ignore"
+        "level": "warn"
     },
     "no_stand_alone_at": {
         "name": "no_stand_alone_at",
