@@ -1,91 +1,83 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>UI-Message-Queue Demo</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <style>
-                
+  <head>
+    <title>UI-Message-Queue Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <style>
+
 #msg-output{
     width: 300px;
     height: 30px;
     border: 1px solid black;
     margin: 15px;
     padding: 10px;
-}                
-                
-        </style>        
-    </head>
-    
-    <body>
-        <header id="banner">
+}
+
+    </style>
+  </head>
+
+  <body>
+    <header id="banner">
+      <h2>UI-Message-Queue Demo</h2>
+
+      <p>This page is a demo of the UI Message Queue - a Javascript implementation of a
+          message queue allowing you to push messages (String) to the queue and
+          display in via a FIFO (First In First Out) method.
+      </p>
+
+      <p>See <a href="https://github.com/rob-murray/ui-message-queue">https://github.com/rob-murray/ui-message-queue</a>.</p>
+
+      <p>Click the button to add some messages to the queue and watch them each displayed for a specific period of time.</p>
+
+      <p><a class="button" href="#" onClick="window.location='view-source:' + window.location.href">View Source</a> to have a look at what's going on.</p>
+    </header>
+
+    <section id="content">
+      <button id="init">Click to run!</button>
+      <div id="msg-output">
+
+      </div>
+    </section>
+  </body>
+
+  <!-- Import Javascript lib -->
+  <script type="text/javascript" src="https://rawgithub.com/rob-murray/ui-message-queue/master/lib/ui-message-queue.js"></script>
 
 
-            <h2>UI-Message-Queue Demo</h2>
-            
-            <p>This page is a demo of the UI Message Queue - a Javascript implementation of a 
-                message queue allowing you to push messages (String) to the queue and 
-                display in via a FIFO (First In First Out) method.
-                @See <a href="https://github.com/rob-murray/ui-message-queue">https://github.com/rob-murray/ui-message-queue</a>.</p>
-            
-            <p>Click the button to add some messages to the queue and watch them each displayed for a specific period of time.</p>
-            
-            <p><a class="button" href="#" onClick="window.location='view-source:' + window.location.href">View Source</a> to have a look at what's going on.</p>
-        </header>
+  <script type="text/javascript">
 
-
-        <section id="content">
-            <button id="init">Click to run!</button>
-            <div id="msg-output">
-                
-            </div>
-        </section>
-        
-    </body>
-    
-    <!-- Import Javascript lib -->
-    <script type="text/javascript" src="https://rawgithub.com/rob-murray/ui-message-queue/master/lib/UiMessageQueue-release.js"></script>
-    
-    
-    <script type="text/javascript">
-        
 (function() {
-    
-    "use strict";
+  "use strict";
 
-    var messageQueue,
-        messageDisplayTime = 1500;//1.5 secs
+  var messageQueue,
+      ONE_SECOND = 1000,
+      messageDisplayTime = 1.5 * ONE_SECOND;
 
-    // Create UIMessageQueue with options
-    messageQueue = new UiMessageQueue({
-        outputElementId: "msg-output",
-        delay: messageDisplayTime,
-        emptyDisplayString: "Queue empty..."
-    });
+  // Create UIMessageQueue with options
+  messageQueue = new UiMessageQueue({
+    outputElementId: "msg-output",
+    delay: messageDisplayTime,
+    emptyDisplayString: "Queue is now empty..."
+  });
 
-    // Method called when user clicks button
-    function run(){
+  function run(){
+    var TEN_SECONDS = 10 * ONE_SECOND;
 
-        var DELAY_TIME = 10000;//Ten seconds
+    //add sequence of messages to queue
+    messageQueue.push("message 1");
+    messageQueue.push("message 2");
+    messageQueue.push("message 3");
+    messageQueue.push("message 4");
+    messageQueue.push("message 5");
 
-        //add sequence of messages to queue
-        messageQueue.push("message 1");
-        messageQueue.push("message 2");
-        messageQueue.push("message 3");
-        messageQueue.push("message 4");
-        messageQueue.push("message 5");
-
-        //add a message delayed
-        setTimeout(function(){
-            messageQueue.push("This is a delayed message!!");
-        }, DELAY_TIME);
-    }
-
-    //assign onclick event to button
-    document.getElementById("init").onclick = run;
-
+    //add a delayed message
+    setTimeout(function(){
+      messageQueue.push("This is a delayed message!!");
+    }, TEN_SECONDS);
+  }
+  document.getElementById("init").onclick = run;
 }());
-        
-    </script>    
-    
+
+  </script>
 </html>
