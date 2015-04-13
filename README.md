@@ -22,12 +22,12 @@ Features:
 
 How to use:
 
-1) Copy Javascript source from `lib/ui-message-queue.js` to your project.
+1) Copy Javascript source from `lib/ui-message-queue.min.js` or `lib/ui-message-queue.js` to your project.
 
 2) Import source file.
 
 ```javascript
-  <script type="text/javascript" src="ui-message-queue.js"></script>
+<script type="text/javascript" src="ui-message-queue.min.js"></script>
 ```
 
 3) Options
@@ -77,7 +77,7 @@ Edit the coffeescript source and then compile to js - Do not edit ui-message-que
 This repository contains the following sections:
 
 1. `src` - this contains the source Coffeescript.
-2. `lib/ui-message-queue.js` - the source is then compiled into this Javascript file (copy this to use!).
+2. `lib/ui-message-queue{.min}.js` - the source is then compiled into Javascript and minified (copy this to use!).
 3. `test/*_spec.coffee` - the tests implemented in Mocha and Chai.
 4. `example/index.html` - some real life html with proper Javascript to test this project.
 
@@ -99,7 +99,7 @@ $ grunt coffeelint
 
 ### Build
 
-To produce a release build, run the build script; this compiles to JS and merges into one file to produce `src/ui-message-queue.js`.
+To produce a release build, run the build script; this compiles to JS and merges into one file to produce `src/ui-message-queue.js` and `lib/ui-message-queue.min.js`.
 
 ```bash
 $ grunt build
