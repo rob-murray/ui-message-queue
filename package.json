@@ -2,7 +2,7 @@
   "name": "ui-message-queue",
   "version": "0.9.1",
   "description": "ui-message-queue - a User Message Queue Javascript implementation",
-  "main": "lib/ui-message-queue.js",
+  "main": "lib/ui-message-queue.min.js",
   "directories": {
     "example": "example",
     "test": "test"
@@ -20,7 +20,8 @@
     "mocha": "^2.2.4",
     "sinon": "^1.14.1",
     "coffeelint": "^1.9.3",
-    "grunt-coffeelint": "^0.0.13"
+    "grunt-coffeelint": "^0.0.13",
+    "grunt-contrib-uglify": "^0.9.1"
   },
   "scripts": {
     "test": "grunt test",
