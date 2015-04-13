@@ -3,4 +3,5 @@
 
 # But not the built file
 !ui-message-queue.js
+!ui-message-queue.min.js
 !.gitignore
