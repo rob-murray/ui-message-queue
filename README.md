@@ -20,9 +20,19 @@ Features:
 
 ## Getting started
 
-How to use:
+1) Get hold of the library:
 
-1) Copy Javascript source from `lib/ui-message-queue.min.js` or `lib/ui-message-queue.js` to your project.
+### Bower
+
+Install from [bower.io](http://bower.io/)
+
+```
+$ bower install ui-message-queue --save
+```
+
+### Copy javascript file
+
+Copy Javascript source from `lib/ui-message-queue.min.js` or `lib/ui-message-queue.js` to your project.
 
 2) Import source file.
 
@@ -30,19 +40,22 @@ How to use:
 <script type="text/javascript" src="ui-message-queue.min.js"></script>
 ```
 
-3) Options
+Or however you require libraries.
+
+3) Configuration
 
 Takes options in the form of an object literal:
 
 ```javascript
 options = {
   outputElementId: "output-id",
-  delay: TIME_IN_MILISECONDS,
+  delay: 2000,
   emptyDisplayString: "A String"
 };
 ```
 
 These are as follows:
+
 * `outputElementId` - **[OPTIONAL]** - The ID of the element in the DOM to add messages to. If this is not found then ui-message-queue falls back to using the alert popup box
 * `delay` - **[OPTIONAL]** - Time in milisecs to display each message for. Throws "Invalid argument" Error if not numeric. Default value is 1000 or 1 second.
 * `emptyDisplayString` - **[OPTIONAL]** - This is message displayed when no messages are in the queue. Default val is "..."
@@ -51,15 +64,15 @@ These are as follows:
 4) Create instance of object passing options.
 
 ```javascript
-  var messageQueue = new UiMessageQueue(options);
+var messageQueue = new UiMessageQueue(options);
 ```
 
 5) Add messages to the queue.
 
 ```javascript
-  messageQueue.push("Here is a message");
-  messageQueue.push("Here is another one");
-  messageQueue.push("Finally, one more message");
+messageQueue.push("Here is a message");
+messageQueue.push("Here is another one");
+messageQueue.push("Finally, one more message");
 ```
 
 These will be displayed in a first in-first out manner with each message displayed for the set period of time.
