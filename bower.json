@@ -1,0 +1,41 @@
+{
+  "name": "ui-message-queue",
+  "version": "0.9.2",
+  "homepage": "https://github.com/rob-murray/ui-message-queue",
+  "authors": [
+    "Rob Murray <robmurray17@gmail.com>"
+  ],
+  "description": "ui-message-queue - a User Message Queue Javascript implementation",
+  "main": "lib/ui-message-queue.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "display-message",
+    "message-queue",
+    "no-jquery",
+    "message",
+    "queue",
+    "timeout",
+    "sequence"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "example",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rob-murray/ui-message-queue.git"
+  }
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/jQuery-File-Upload.git"
+  },
+  "bugs": "https://github.com/rob-murray/ui-message-queue/issues"
+}

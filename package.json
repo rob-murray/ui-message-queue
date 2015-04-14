@@ -36,5 +36,14 @@
   "bugs": {
     "url": "https://github.com/rob-murray/ui-message-queue/issues"
   },
-  "homepage": "https://github.com/rob-murray/ui-message-queue"
+  "homepage": "https://github.com/rob-murray/ui-message-queue",
+  "keywords": [
+    "display-message",
+    "message-queue",
+    "no-jquery",
+    "message",
+    "queue",
+    "timeout",
+    "sequence"
+  ]
 }
