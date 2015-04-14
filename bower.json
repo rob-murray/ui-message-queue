@@ -11,7 +11,13 @@
     "globals"
   ],
   "keywords": [
-    "keywds"
+    "display-message",
+    "message-queue",
+    "no-jquery",
+    "message",
+    "queue",
+    "timeout",
+    "sequence"
   ],
   "license": "MIT",
   "ignore": [
@@ -22,5 +28,14 @@
     "tests",
     "example",
     "src"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rob-murray/ui-message-queue.git"
+  }
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/jQuery-File-Upload.git"
+  },
+  "bugs": "https://github.com/rob-murray/ui-message-queue/issues"
 }
